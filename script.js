@@ -17,6 +17,7 @@ function btLogin() {
 }
 
 function addUser(currentUser) {
+  // already adds
   const promisse = axios({
     method: "POST",
     url: urlName,
@@ -26,7 +27,7 @@ function addUser(currentUser) {
     console.log(currentUser);
     console.log(response.data);
     console.log("--------- addUser -----------");
-    getUsers();
+    //getUsers();
     getMessages();
     document.querySelector(".login").style.display = "none";
     document.querySelector(".body-container").style.display = "block";
@@ -36,23 +37,23 @@ function addUser(currentUser) {
   });
 }
 
-function getUsers() {
-  const promisse = axios({ method: "GET", url: urlName });
-  promisse.then((response) => {
-    console.log(response.data);
-    console.log("--------- getUsers -----------");
-  });
-  promisse.catch((error) => {
-    console.log(error);
-  });
-}
+// function getUsers() { // for now only console.log
+//   const promisse = axios({ method: "GET", url: urlName });
+//   promisse.then((response) => {
+//     console.log(response.data);
+//     console.log("--------- getUsers -----------");
+//   });
+//   promisse.catch((error) => {
+//     console.log(error);
+//   });
+// }
 
 function getMessages() {
   const promisse = axios({ method: "GET", url: urlMessages });
   promisse.then((response) => {
     console.log(response.data);
     response.data.forEach((msg) => {
-      console.log(msg);
+      renderMessage(msg);
     });
     console.log("--------- getMessages -----------");
   });
@@ -61,27 +62,78 @@ function getMessages() {
   });
 }
 // function that adds text from footer input and adds it to ul as li
-function addMessage() {
+function renderMessage(msg) {
+  //run the following code every 3 seconds
+  setInterval(function () {
+    if (msg.type === "status") {
+      document.querySelector("ul").innerHTML += `<li class="message">
+        <span class="time">${msg.time}</span> 
+        <span class="username"> ${msg.from}</span>
+        <span class="message">para</span>
+        <span class="username"> ${msg.to}</span>        
+        <span class="message"> ${msg.text}</span>
+      </li>
+
+  `;
+
+      // clear input
+      document.querySelector("footer input").value = "";
+      let chat = document.querySelectorAll("li");
+      chat[chat.length - 1].scrollIntoView();
+    } else if (msg.type === "message") {
+      document.querySelector("ul").innerHTML += `<li class="message">
+        <span class="time">${msg.time}</span> 
+        <span class="username"> ${msg.from}</span>
+        <span class="message">para</span>
+        <span class="username"> ${msg.to}</span>        
+        <span class="message"> ${msg.text}</span>
+      </li>
+
+  `;
+
+      // clear input
+      document.querySelector("footer input").value = "";
+      let chat = document.querySelectorAll("li");
+      chat[chat.length - 1].scrollIntoView();
+    } else {
+      // privada
+      document.querySelector("ul").innerHTML += `<li class="message">
+        <span class="time">${msg.time}</span> 
+        <span class="username"> ${msg.from}</span>
+        <span class="message">para</span>
+        <span class="username"> ${msg.to}</span>        
+        <span class="message"> ${msg.text}</span>
+      </li>
+
+  `;
+
+      // clear input
+      document.querySelector("footer input").value = "";
+      let chat = document.querySelectorAll("li");
+      chat[chat.length - 1].scrollIntoView();
+    }
+  }, 3000);
+
   // getting message from user
-  const message = document.querySelector("footer input").value;
-  // create element li to add to ul
-  const li = document.createElement("li");
+}
 
-  // create elent span with class username
-  const span = document.createElement("span");
-  span.classList.add("username");
-  span.innerHTML = currentUser;
-  li.appendChild(span);
-
-  // create element span with class message
-  const span2 = document.createElement("span");
-  span2.innerHTML = message;
-  span2.classList.add("message");
-  li.appendChild(span2);
-
-  // add li to ul
-  document.querySelector("ul").appendChild(li);
-
-  // clear input
-  document.querySelector("footer input").value = "";
+function sendMessage() {
+  const typedMessage = document.querySelector("footer input").value;
+  const promisse = axios({
+    method: "POST",
+    url: urlMessages,
+    data: {
+      from: currentUser,
+      to: "Todos",
+      text: typedMessage,
+      type: "message",
+    },
+  });
+  promisse.then((response) => {
+    console.log(response.data);
+    console.log("--------- sendMessage -----------");
+  });
+  promisse.catch((error) => {
+    console.log(error);
+  });
 }
