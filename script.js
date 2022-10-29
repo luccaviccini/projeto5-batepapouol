@@ -50,10 +50,38 @@ function getUsers() {
 function getMessages() {
   const promisse = axios({ method: "GET", url: urlMessages });
   promisse.then((response) => {
-    console.log(response.data[0]);
+    console.log(response.data);
+    response.data.forEach((msg) => {
+      console.log(msg);
+    });
     console.log("--------- getMessages -----------");
   });
   promisse.catch((error) => {
     console.log(error);
   });
+}
+// function that adds text from footer input and adds it to ul as li
+function addMessage() {
+  // getting message from user
+  const message = document.querySelector("footer input").value;
+  // create element li to add to ul
+  const li = document.createElement("li");
+
+  // create elent span with class username
+  const span = document.createElement("span");
+  span.classList.add("username");
+  span.innerHTML = currentUser;
+  li.appendChild(span);
+
+  // create element span with class message
+  const span2 = document.createElement("span");
+  span2.innerHTML = message;
+  span2.classList.add("message");
+  li.appendChild(span2);
+
+  // add li to ul
+  document.querySelector("ul").appendChild(li);
+
+  // clear input
+  document.querySelector("footer input").value = "";
 }

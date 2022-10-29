@@ -152,13 +152,16 @@ ul {
 }
 
 li {
+  box-sizing: border-box;
   width: 100%;
   background-color: #dcdcdc;
   height: 40px;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   margin-bottom: 4px;
+  padding-left: 50px;
+
 }
 
 .time {
@@ -167,12 +170,23 @@ li {
 }
 
 .username {
-  font-weight: bold;
+  font-family: 'Roboto';
+  font-style: bold;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 16px;
+  color: #000000;
+  font-weight: 700;
+  margin-right: 5px;
 }
 
 .message {
-  min-height: 40px;
-  background-color: white;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+  color: #000000;
 }
 
 .private-message {
