@@ -1,6 +1,10 @@
 /*Importing Roboto font for project */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+* {
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
 
 
 body {
@@ -154,22 +158,39 @@ ul {
 li {
   box-sizing: border-box;
   width: 100%;
-  background-color: #dcdcdc;
-  height: 40px;
+  background-color: #FFFFFF;
+  min-height: 40px;
   display: flex;
+  flex-direction: row;
   justify-content: start;
   align-items: center;
   margin-bottom: 4px;
   padding-left: 10px;
+  flex-wrap: wrap;
+  word-wrap: break-word; 
+  
+}
 
+.status{
+  background-color: #dcdcdc;
+}
+
+.private-message {
+  min-height: 40px;
+  background-color: #FFDEDE;
 }
 
 .time {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 16px;
   color: #AAAAAA;
-  margin-right: 10px;
+  
 }
 
-.username {
+.from, .to {
   font-family: 'Roboto';
   font-style: bold;
   font-weight: 700;
@@ -177,19 +198,17 @@ li {
   line-height: 16px;
   color: #000000;
   font-weight: 700;
-  margin-right: 5px;
+  
 }
 
-.message {
+p {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 16px;
   color: #000000;
+  word-wrap: break-word;
+  
 }
 
-.private-message {
-  min-height: 40px;
-  background-color: lightpink;
-}
