@@ -4,6 +4,7 @@
 * {
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
+  word-break: break-all;
 }
 
 
@@ -166,8 +167,7 @@ li {
   align-items: center;
   margin-bottom: 4px;
   padding-left: 10px;
-  flex-wrap: wrap;
-  word-wrap: break-word; 
+  
   
 }
 
