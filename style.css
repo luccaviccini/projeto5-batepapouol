@@ -4,7 +4,7 @@
 * {
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
-  word-break: break-all;
+
 }
 
 
@@ -18,7 +18,7 @@ body {
 
 .body-container,
 .login {
-  
+
   height: 100vh;
   max-width: 450px;
   background-color: #f3f3f3;
@@ -50,7 +50,7 @@ body {
   text-align: center;
   margin-bottom: 15px;
   color: #AEAEAE;
-  font-family: 'Roboto';
+
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -71,7 +71,6 @@ body {
   top: 327px;
   background: #E7E7E7;
   border-radius: 9px;
-  font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -120,7 +119,7 @@ footer {
 }
 
 footer input {
-  font-family: 'Roboto';
+
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -133,7 +132,7 @@ footer input:focus {
 }
 
 footer input::placeholder {
-  font-family: 'Roboto';
+
   font-style: italic;
   font-weight: 400;
   font-size: 18px;
@@ -167,11 +166,9 @@ li {
   align-items: center;
   margin-bottom: 4px;
   padding-left: 10px;
-  
-  
 }
 
-.status{
+.status {
   background-color: #dcdcdc;
 }
 
@@ -181,34 +178,33 @@ li {
 }
 
 .time {
-  font-family: 'Roboto';
+
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
   line-height: 16px;
   color: #AAAAAA;
-  
+
 }
 
-.from, .to {
-  font-family: 'Roboto';
+.from,
+.to {
+
   font-style: bold;
   font-weight: 700;
   font-size: 16px;
   line-height: 16px;
   color: #000000;
   font-weight: 700;
-  
+
 }
 
 p {
-  font-family: 'Roboto';
+  width: 100%;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 16px;
   color: #000000;
   word-wrap: break-word;
-  
 }
-
