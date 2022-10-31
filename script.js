@@ -9,6 +9,7 @@ const urlName = "https://mock-api.driven.com.br/api/v6/uol/participants";
 let currentUser;
 let onlineLoop, loopGetsMessage;
 let msgsArray = [];
+let message;
 // ----*----*----*----*----END of global variables ----*----*----*----*----*----* \\
 
 // function that is called when "Entrar" button is pressed
@@ -51,23 +52,22 @@ function stayOnline(){
   promisse.catch(stayOnlineFail);
 }
 
-const stayOnlineOK = (connectionOK) => {console.log(connectionOK.status)};
+const stayOnlineOK = (connectionOK) => {return};
 const stayOnlineFail = (connectionFail) => {
   console.log(connectionFail.status);
   alert("Conexão perdida, recarregue a página");
 };
 
 function sendMessage(){
-  let message = document.querySelector("footer input").value;
+  message = document.querySelector("footer input");
   const promisse = axios(
     {method:'POST', 
     url:urlMessages, 
-    data: {from: currentUser, to: "Todos", text: message, type: "message"}});
-  message = '';
-  console.log(message)
-  console.log(message);
+    data: {from: currentUser, to: "Todos", text: message.value, type: "message"}});
+  
   promisse.then(getsMessages);
   promisse.catch(sendMessageFail);
+  message.value = "";
 }
 
 
@@ -88,7 +88,7 @@ function getsMessagesOK(msgGET){
   msgsArray = msgGET.data;
   msgsArray.forEach(msg => {
     if(msg.type === "status"){
-      console.log(typeof(msg.time));
+      
       chat.innerHTML += `
       <li class="status">
       <p>
@@ -99,14 +99,15 @@ function getsMessagesOK(msgGET){
       </li>`;
     } 
     else if(msg.type === "message"){
-      chat.innerHTML += `<li class="message">
-      <p>
-        <span class="time">(${msg.time})&nbsp</span>
-        <span class="from">${msg.from}&nbsp</span>
-        para 
-        <span class="to">${msg.to}:&nbsp</span>
-        ${msg.text}
-      </p>
+      chat.innerHTML += 
+      `<li class="message">
+        <p>
+          <span class="time">(${msg.time})&nbsp</span>
+          <span class="from">${msg.from}&nbsp</span>
+          para 
+          <span class="to">${msg.to}:&nbsp</span>
+          ${msg.text}
+        </p>
       </li>`;
     }
     else{
